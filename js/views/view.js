@@ -7,21 +7,19 @@ export class View extends Observer{
         super();
         this.#controller = controller; 
         const incrementer = document.querySelector("#btn-increment");
-        incrementer.addEventListener("click", this.appuyer.bind(this));
+        incrementer.addEventListener("click", ()=>{
+            this.#controller.incrementCounter();
+            this.notify();
+        });
         const decrementer = document.querySelector("#btn-decrement");
-        decrementer.addEventListener("click", this.deppuyer.bind(this));
+        decrementer.addEventListener("click", ()=>{
+            this.#controller.decrementCounter();
+            this.notify();
+        });
     }
     notify(){
         const par = document.querySelector("#txt-counter");
         let temp = (this.#controller.getCounterValue()).toString();
         par.innerHTML = temp;
-    }
-    appuyer(){
-        this.#controller.incrementCounter();
-        this.notify();
-    }
-    deppuyer(){
-        this.#controller.decrementCounter();
-        this.notify();
-    }
+    } 
 }
